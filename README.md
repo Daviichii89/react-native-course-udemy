@@ -36,3 +36,7 @@ There is no CSS!
 Use inline styles or stylesheet objects
 
 Written in Javascript (i.e in the JS code files, next to the component code)
+
+| Android: | iOS |
+| --- | --- |
+| ![Screenshot 2024-10-09 at 22 07 07](https://github.com/user-attachments/assets/708e529c-61cf-40e6-8f03-6e5d432f4d5b) | ![Screenshot 2024-10-09 at 22 07 41](https://github.com/user-attachments/assets/15982ce8-0725-47b6-9b51-53d7e2796860) |
