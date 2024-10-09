@@ -3,13 +3,7 @@ import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 export default function App() {
   return (
     <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder='Your course goal!' />
-        <Button title='Add Goal' />
-      </View>
-      <View>
-        <Text>List of goalsdsadasdsadsad...</Text>
-      </View>
+      <Text>List of goalsdsadasdsadsad...</Text>
     </View>
   );
 }
