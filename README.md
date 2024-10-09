@@ -1,5 +1,3 @@
-# Handle events
+# iOS & Android styling Differences
 
-We can use handle events and manage states like React because we only change the 'PLATFORM'. (Change react-DOM to react-native).
-
-For example, to handle event on input text we use onChangeText provided from ‘react-native’. Another example, to handle event on click the button we use onPress.
+For example, if we want to rounded the corners of an a text, on iOS, we must to wrap the <Text> element into <View>. If we don't do this we don't see the corners rounded on iOS devices.
