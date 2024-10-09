@@ -34,7 +34,7 @@ Styling React Native Apps
 There is no CSS!
 
 Use inline styles or stylesheet objects
-
+Inherit styles from parent and ancestor element is not part of React Native’s styling approach.
 Written in Javascript (i.e in the JS code files, next to the component code)
 
 | Android: | iOS |
