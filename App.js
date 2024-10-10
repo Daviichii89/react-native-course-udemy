@@ -1,32 +1,56 @@
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ImageBackground, SafeAreaView, StyleSheet } from 'react-native';
+import StartGameScreen from './screens/StartGameScreen';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useState } from 'react';
+import GameScreen from './screens/GameScreen';
+import Colors from './constants/colors';
+import GameOverScreen from './screens/GameOverScreen';
 
 export default function App() {
+  const [userNumber, setUserNumber] = useState();
+  const [gameIsOver, setGameIsOver] = useState(true);
+  function pickedNumberHandler(pickedNumber) {
+    setUserNumber(pickedNumber)
+    setGameIsOver(false);
+  }
+  function gameOverHandler() {
+    setGameIsOver(true);
+  }
+  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
+
+  if (userNumber) {
+    screen = <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />;
+  };
+  if (gameIsOver && userNumber) {
+    screen = <GameOverScreen userNumber={userNumber} />
+  }
   return (
-    <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput style={styles.textInput} placeholder='Your course goal!' />
-        <Button title='Add Goal' />
-      </View>
-      <View>
-        <Text>List of goalsdsadasdsadsad...</Text>
-      </View>
-    </View>
+    <LinearGradient
+      style={styles.rootScreen}
+      colors={[
+        Colors.primary700,
+        Colors.accent500
+      ]}
+    >
+      <ImageBackground
+        style={styles.rootScreen}
+        source={require('./assets/images/background.png')}
+        resizeMode='cover'
+        imageStyle={styles.backgroundImage}
+      >
+        <SafeAreaView style={styles.rootScreen}>
+          { screen }
+        </SafeAreaView>
+      </ImageBackground>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  appContainer: {
-    padding: 50,
+  rootScreen: {
+    flex: 1,
   },
-  inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: '#cccccc',
-    width: '80%',
-    marginRight: 8,
-    padding: 8
+  backgroundImage: {
+    opacity: 0.15,
   }
 });
