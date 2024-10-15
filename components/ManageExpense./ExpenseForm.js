@@ -1,23 +1,25 @@
-import { Alert, StyleSheet, Text, View } from "react-native";
-import Input from "./Input";
 import { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+
+import Input from "./Input";
 import Button from "../UI/Button";
+import { getFormattedDate } from "../../util/date";
 import { GlobalStyles } from "../../constants/styles";
 
 function ExpenseForm({ onCancel, onSubmit, submitLabelButton, defaultValues }) {
   const [inputs, setInputs] = useState({
     amount: {
-      value: defaultValues ? defaultValues.amount.toString() : "",
-      isValid: true,
-    },
-    date: {
-      value: defaultValues ? defaultValues.date.toISOString().slice(0, 10) : "",
-      isValid: true,
-    },
-    description: {
-      value: defaultValues ? defaultValues.description : "",
-      isValid: true,
-    },
+        value: defaultValues ? defaultValues.amount.toString() : '',
+        isValid: true,
+      },
+      date: {
+        value: defaultValues ? getFormattedDate(defaultValues.date) : '',
+        isValid: true,
+      },
+      description: {
+        value: defaultValues ? defaultValues.description : '',
+        isValid: true,
+      },
   });
   function inputChangedHandler(inputIdentifier, enteredValue) {
     setInputs((prevState) => {
@@ -33,15 +35,15 @@ function ExpenseForm({ onCancel, onSubmit, submitLabelButton, defaultValues }) {
 
   function submitHandler() {
     const expenseData = {
-      amount: +inputs.amount.value,
-      date: new Date(inputs.date.value),
-      description: inputs.description.value,
+        amount: +inputs.amount.value,
+        date: new Date(inputs.date.value),
+        description: inputs.description.value,
     };
     const amountIsValid = !isNaN(expenseData.amount) && expenseData.amount > 0;
-    const dateIsValid = expenseData.date.toString() === "Invalid Date";
+    const dateIsValid = expenseData.date.toString() !== "Invalid Date";
     const descriptionIsValid = expenseData.description.trim().length > 0;
 
-    if (!amountIsValid || !dateIsValid || !description) {
+    if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
       //   Alert.alert("Invalid input", "Please check your input values");
       setInputs((prevState) => {
         return {
